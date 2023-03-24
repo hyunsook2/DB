@@ -43,8 +43,23 @@ SELECT ENAME, SAL FROM EMP
 WHERE SAL>ANY(SELECT SAL FROM EMP WHERE DEPTNO=30);
 
 SELECT D.DNAME FROM DEPT D
+WHERE NOT EXISTS (SELECT E.ENAME FROM EMP E WHERE E.DEPTNO=D.DEPTNO AND E.SAL>3000);
+
+SELECT D.DNAME FROM DEPT D
 WHERE EXISTS (SELECT E.ENAME FROM EMP E WHERE E.DEPTNO=D.DEPTNO AND E.SAL>3000);
 
+--수업예문
+--Q1 부서명 부서이름 사원번호 사원명 봉급
+--사원의 봉급이 2000초과인 사원만
+SELECT D.DEPTNO , D.DNAME , E.EMPNO ,E.ENAME,SAL FROM DEPT d , EMP e
+WHERE E.DEPTNO = D.DEPTNO AND E.SAL>2000;
+--Q2 부서별 
+--부서코드 부서명 급여평균 최대급여 최소급여 부서인원수
+SELECT D.DEPTNO , D.DNAME  AVG(NAME.SAL) AS AVG(SAL) MAX(NAME.SAL) AS(MAX.SAL) COUNT(D.DEPTNO.*) FROM DEPT d , EMP e;
+
+
+
+--예문
 select d.deptno,d.dname, e.empno, e.ename, e.sal
 from dept d join emp e on d.deptno=e.deptno
 where (d.deptno,e.sal) in 

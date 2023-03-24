@@ -55,10 +55,8 @@ SELECT D.DEPTNO , D.DNAME , E.EMPNO ,E.ENAME,SAL FROM DEPT d , EMP e
 WHERE E.DEPTNO = D.DEPTNO AND E.SAL>2000;
 --Q2 부서별 
 --부서코드 부서명 급여평균 최대급여 최소급여 부서인원수
-SELECT D.DEPTNO , D.DNAME  AVG(NAME.SAL) AS AVG(SAL) MAX(NAME.SAL) AS(MAX.SAL) COUNT(D.DEPTNO.*) FROM DEPT d , EMP e;
-
-
-
+SELECT D.DEPTNO, D.DNAME , AVG(E.SAL), MIN(E.SAL), COUNT(*) FROM DEPT D, EMP E
+WHERE E.DEPTNO = D.DEPTNO;
 --예문
 select d.deptno,d.dname, e.empno, e.ename, e.sal
 from dept d join emp e on d.deptno=e.deptno

@@ -34,16 +34,18 @@ WHERE (DEPTNO, SAL) NOT IN (SELECT DEPTNO, MIN(SAL) FROM EMP WHERE DEPTNO = 30 G
 GROUP BY DEPTNO HAVING MIN(SAL) > (SELECT MIN(SAL) FROM EMP WHERE DEPTNO = 30) ORDER BY DEPTNO;
 
 -- 10.문제 : job이 CLERK 인 사원이 2명 이상 있는 부서의 부서번호, 부서명을 출력하라
-
+SELECT DEPTNO,DNAME FROM DEPT WHERE (SELECT ENAME FROM EMP WHERE JOB='CLERK'); --시발왜안됨???
 
 --11.문제 : job 이 'CLERK' 인 사원이 한명이라도 있는 부서의 부서명만 출력하라
 
 
 --12.문제 : 각 부서별로 최소 급여를 받는 사원의 부서번호, 부서명, 사번, 이름, 급여를 출력하라
-
+SELECT d.DEPTNO, d.DNAME, e.EMPNO, e.ENAME, e.SAL FROM DEPT d JOIN EMP e ON d.DEPTNO = e.DEPTNO
+WHERE e.SAL = (SELECT MIN(SAL) FROM EMP WHERE DEPTNO = e.DEPTNO) ORDER BY d.DEPTNO;
 
 --13.문제 : 직속상사가 없는 사원을 포함해서 부하직원사번, 부하직원명, 직속상사사번, 직속상사명을  출력하라
-
+SELECT W.ENAME 사원명,M.ENAME 관리자명,MM.ENAME 관리자의_관리자명 FROM EMP W 
+	LEFT JOIN EMP M ON W.MGR=M.EMPNO LEFT JOIN EMP MM ON M.MGR=MM.EMPNO; 
 
 --14.문제 : 평균 급여보다 많거나 같고 최대 급여보다는 적은 급여를 받는 사원의 사번, 이름, 급여를 출력하라
 

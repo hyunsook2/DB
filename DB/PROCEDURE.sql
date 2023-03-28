@@ -82,27 +82,27 @@
 --    DBMS_OUTPUT.PUT_LINE(V_ENAME||','||V_DEPTNO);
 --END;
     
---CREATE OR REPLACE PROCEDURE PROCTEST4 AS
---BEGIN
---    FOR I IN 1..4
---    LOOP
---        IF MOD(I,2)=0 
---        THEN 
---            DBMS_OUTPUT.PUT_LINE('짝수');
---        ELSE
---            DBMS_OUTPUT.PUT_LINE('홀수');
---        END IF;
---    END LOOP;
---    FOR LIST IN(SELECT EMPNO FROM EMP)
---    LOOP
---        IF MOD(LIST.EMPNO,2)=0 
---        THEN
---             DBMS_OUTPUT.PUT_LINE(LIST.EMPNO||'짝수');
---        ELSE
---            DBMS_OUTPUT.PUT_LINE(LIST.EMPNO||'홀수');
---        END IF;
---    END LOOP;
---END;
+CREATE OR REPLACE PROCEDURE PROCTEST4 AS
+BEGIN
+    FOR I IN 1..4
+    LOOP
+        IF MOD(I,2)=0 
+        THEN 
+            DBMS_OUTPUT.PUT_LINE('짝수');
+        ELSE
+            DBMS_OUTPUT.PUT_LINE('홀수');
+        END IF;
+    END LOOP;
+    FOR LIST IN(SELECT EMPNO FROM EMP)
+    LOOP
+        IF MOD(LIST.EMPNO,2)=0 
+        THEN
+             DBMS_OUTPUT.PUT_LINE(LIST.EMPNO||'짝수');
+        ELSE
+            DBMS_OUTPUT.PUT_LINE(LIST.EMPNO||'홀수');
+        END IF;
+    END LOOP;
+END PROCTEST4;
 
 --
 --CREATE OR REPLACE PROCEDURE PROCTEST5
